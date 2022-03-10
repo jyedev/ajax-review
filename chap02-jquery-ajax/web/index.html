@@ -3,8 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-
+	<input type="text" name="name" id="param">
+	<button id="sendServer">서버로 전송</button>
+	<br>
+	<p id="result"></p>
+	<script>
+		$("#sendServer").click(function(){
+			const name = $("#param").val();
+			
+			$.ajax({
+				url : "/chap02/jquery",
+				data : { name : name },
+				method : "GET",
+				success : function(data, textStatus, xhr){
+					$("#result").text(data);
+					console.log(textStatus);
+					console.log(xhr);
+				},
+				error : function(xhr, status){
+					console.log(xhr);
+					console.log(status);
+				}
+			});
+		});
+	</script>
 </body>
 </html>
